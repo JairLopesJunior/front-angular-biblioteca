@@ -19,7 +19,8 @@
     </thead>
   
     <tbody>
-      <tr *ngFor='let l of _livros'>
+      <tr *ngFor='let l of filteredLivros'>
+
         <td><img [src]="l.imagem" width="80" height="80"></td>
         <td>{{ l.nome }}</td>
         <td>{{ l.autor }}</td>
@@ -28,6 +29,7 @@
         <td>{{ l.editora }}</td>
         <td>{{ l.pagina }}</td>
         <td>{{ l.status }}</td>
+        
       </tr>
     </tbody>
   

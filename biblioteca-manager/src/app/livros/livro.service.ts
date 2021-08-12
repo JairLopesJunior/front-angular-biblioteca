@@ -1,5 +1,7 @@
 import { Livro } from './Livro';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -7,8 +9,12 @@ import { Injectable } from '@angular/core';
 
 export class LivroService{
 
-    retrieveAll(): Livro[]{
-        return LIVROS;
+    private livroUrl: string = 'http://localhost:3100/api/livros';
+
+    constructor(private httpClient: HttpClient){}
+
+    retrieveAll(): Observable<Livro[]>{
+        return this.httpClient.get<Livro[]>(this.livroUrl);
     }
 }
 

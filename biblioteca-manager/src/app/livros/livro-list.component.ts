@@ -7,6 +7,8 @@ import { LivroService } from './livro.service';
 })
 export class LivroListComponent implements OnInit{
 
+    filteredLivros: Livro[] = [];
+
     imagem: string = '/assets/images/duke.png';
 
     _livros: Livro[] = [];
@@ -14,7 +16,17 @@ export class LivroListComponent implements OnInit{
     constructor(private livroService: LivroService){}
 
     ngOnInit(): void{
-        this._livros = this.livroService.retrieveAll();
+        this.retrieveAll();
+    }
+
+    retrieveAll(): void{
+        this.livroService.retrieveAll().subscribe({
+            next: livros => {
+                this._livros = livros;
+                
+            },
+            error: err => console.log('Error', err)
+        })
     }
 
 }
